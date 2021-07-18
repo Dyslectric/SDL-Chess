@@ -22,14 +22,32 @@ GameInput input_handler(SDL_Event event)
 			event.button.button == SDL_BUTTON_LEFT
 		)
 		{
-			//input.tile = get_tile(event.button.x, event.button.y);
+			input.tile = get_tile(event.button.x, event.button.y);
 			return input;
 		}
 	}
 	return input;
 }
 
+//	good luck getting these algorithms, bucko, they took hours
 int get_tile(const int x, const int y)
 {
+	int width;
+	int height;
+	SDL_GetWindowSize(window.window, &width, &height);
 
+	if(width == height)
+	{
+		return ((x / (width / 8)) + (y / (height / 8) * 8));
+	}
+
+	if(width > height)
+	{
+		return (((x - ((width - height) / 2)) / (height / 8)) + (y / (height / 8) * 8));
+	}
+
+	if(width < height)
+	{
+		return ((x / (width / 8)) + (((y - ((height - width) / 2))) / (width / 8) * 8));
+	}
 }

@@ -7,6 +7,7 @@
 #include "structs.h"
 #include "logic.h"
 
-GameInput input_handler(SDL_Event event);
+GameInput	input_handler(SDL_Event event);
+int			get_tile(const int x, const int y);
 
 #endif

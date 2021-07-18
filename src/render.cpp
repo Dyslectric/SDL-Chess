@@ -149,3 +149,8 @@ SDL_Rect get_dest_rect(const int flag, const int tile)
 
 	return rect;
 }
+
+
+
+
+//	... good god all there is left is the game logic
