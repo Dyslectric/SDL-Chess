@@ -15,7 +15,6 @@ void logic(GameInput input, GameState &state)
 
 	if(input.type == I_TILE)
 	{
-		//game(input.tile, state);
 	}
 }
 

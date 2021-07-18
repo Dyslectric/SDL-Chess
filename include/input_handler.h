@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 
 #include "structs.h"
+#include "logic.h"
 
 GameInput input_handler(SDL_Event event);
 
