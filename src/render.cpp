@@ -14,7 +14,7 @@ void render(GameWindow window, GameState state)
 	SDL_RenderPresent(window.renderer);
 }
 
-// calculates height of window and resizes and re places board
+// calculates width/height of window and returns SDL_Rect of where to put a texture
 SDL_Rect get_dest_rect(const GameWindow window, const int flag, const int tile)
 {
 	SDL_Rect rect;
@@ -31,7 +31,7 @@ SDL_Rect get_dest_rect(const GameWindow window, const int flag, const int tile)
 			rect.x = 0;
 			rect.y = 0;
 			rect.w = width;
-			rect.h = width;
+			rect.h = height;
 			return rect;
 		}
 
@@ -53,5 +53,6 @@ SDL_Rect get_dest_rect(const GameWindow window, const int flag, const int tile)
 			return rect;
 		}
 	}
+
 	return rect;
 }
