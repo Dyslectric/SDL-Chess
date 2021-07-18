@@ -43,11 +43,21 @@ int get_tile(const int x, const int y)
 
 	if(width > height)
 	{
+		if(x < ((width - height) / 2) || x > ((width - height) / 2) + height)
+		{
+			return NON;
+		}
 		return (((x - ((width - height) / 2)) / (height / 8)) + (y / (height / 8) * 8));
 	}
 
 	if(width < height)
 	{
+		if(y < ((height - width) / 2) || y > ((height - width) / 2) + width)
+		{
+			return NON;
+		}
 		return ((x / (width / 8)) + (((y - ((height - width) / 2))) / (width / 8) * 8));
 	}
+
+	return NON;
 }
