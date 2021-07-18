@@ -26,6 +26,7 @@ struct GameState
     int board[64];
     int hintBoard[64];
     int heldPiece;
+    int promotion;
 };
 
 struct GameInput

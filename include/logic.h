@@ -6,3 +6,4 @@
 #include "globals.h"
 
 void logic(GameInput input);
+void game(const int tile);

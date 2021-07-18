@@ -10,6 +10,9 @@
 //  General null like thing for this program is -1
 #define NON -1
 
+#define true 1
+#define false 0
+
 //  Names for texture indicies
 enum texture_indicies
 {
@@ -23,7 +26,7 @@ enum texture_indicies
 //  Flags for get_dest_rect
 enum dest_flags
 {
-    DEST_BOARD, DEST_TILE
+    DEST_BOARD, DEST_TILE, DEST_HELD
 };
 
 // turn values for game logic

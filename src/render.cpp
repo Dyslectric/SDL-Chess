@@ -20,6 +20,11 @@ void render()
 		draw_pieces();
 	}
 
+	if(state.heldPiece != NON)
+	{
+		draw_held_piece();
+	}
+
 	SDL_RenderPresent(window.renderer);
 }
 
@@ -78,6 +83,12 @@ void draw_pieces()
 							&window.rectSources[state.board[i]], &destRect);
 		}
 	}
+}
+
+void draw_held_piece()
+{
+	SDL_Rect destRect = get_dest_rect(DEST_HELD, NON);
+	SDL_RenderCopy(window.renderer, window.textures[Pieces], &window.rectSources[state.heldPiece], &destRect);
 }
 
 // calculates width/height of window and returns SDL_Rect of where to put a texture
@@ -145,6 +156,32 @@ SDL_Rect get_dest_rect(const int flag, const int tile)
 			rect.h = rect.w;
 			return rect;
 		}
+	}
+
+	if(flag == DEST_HELD)
+	{
+		int x;
+		int y;
+
+		SDL_GetMouseState(&x, &y);
+
+		rect.w = width / 8;
+		rect.h = height / 8;
+
+		if(width > height)
+		{
+			rect.w = rect.h;
+		}
+
+		if(width < height)
+		{
+			rect.h = rect.w;
+		}
+
+		rect.x = x - (rect.w / 2);
+		rect.y = y - (rect.h / 2);
+
+		return rect;
 	}
 
 	return rect;

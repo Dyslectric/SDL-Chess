@@ -22,6 +22,7 @@ GameInput input_handler(SDL_Event event)
 			event.button.button == SDL_BUTTON_LEFT
 		)
 		{
+			input.type = I_TILE;
 			input.tile = get_tile(event.button.x, event.button.y);
 			return input;
 		}

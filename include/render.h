@@ -10,6 +10,7 @@ void render();
 void draw_board();
 void draw_hints();
 void draw_pieces();
+void draw_held_piece();
 SDL_Rect get_dest_rect(const int flag, const int tile);
 
 #endif
