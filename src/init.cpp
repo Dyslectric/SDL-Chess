@@ -52,7 +52,7 @@ GameWindow init::window()
 }
 
 // this function divides the pieces png into 12 sdl rects for rendering
-void init::rects(SDL_Rect* rect_array)
+void init::rects(SDL_Rect* rectArray)
 {
     int pawn    = 2560 / 6 * 5;
     int knight  = 2560 / 6 * 3;
@@ -67,36 +67,36 @@ void init::rects(SDL_Rect* rect_array)
     int width   = 2560 / 6;
     int height  = 854 / 2;
 
-    rect_array[WhitePawn].x     = pawn;
-    rect_array[BlackPawn].x     = pawn;
-    rect_array[WhiteKnight].x   = knight;
-    rect_array[BlackKnight].x   = knight;
-    rect_array[WhiteBishop].x   = bishop;
-    rect_array[BlackBishop].x   = bishop;
-    rect_array[WhiteRook].x     = rook;
-    rect_array[BlackRook].x     = rook;
-    rect_array[WhiteQueen].x    = queen;
-    rect_array[BlackQueen].x    = queen;
-    rect_array[WhiteKing].x     = king;
-    rect_array[BlackKing].x     = king;
+    rectArray[WhitePawn].x     = pawn;
+    rectArray[BlackPawn].x     = pawn;
+    rectArray[WhiteKnight].x   = knight;
+    rectArray[BlackKnight].x   = knight;
+    rectArray[WhiteBishop].x   = bishop;
+    rectArray[BlackBishop].x   = bishop;
+    rectArray[WhiteRook].x     = rook;
+    rectArray[BlackRook].x     = rook;
+    rectArray[WhiteQueen].x    = queen;
+    rectArray[BlackQueen].x    = queen;
+    rectArray[WhiteKing].x     = king;
+    rectArray[BlackKing].x     = king;
 
-    rect_array[WhitePawn].y     = white;
-    rect_array[WhiteKnight].y   = white;
-    rect_array[WhiteBishop].y   = white;
-    rect_array[WhiteRook].y     = white;
-    rect_array[WhiteQueen].y    = white;
-    rect_array[WhiteKing].y     = white;
-    rect_array[BlackPawn].y     = black;
-    rect_array[BlackKnight].y   = black;
-    rect_array[BlackBishop].y   = black;
-    rect_array[BlackRook].y     = black;
-    rect_array[BlackQueen].y    = black;
-    rect_array[BlackKing].y     = black;
+    rectArray[WhitePawn].y     = white;
+    rectArray[WhiteKnight].y   = white;
+    rectArray[WhiteBishop].y   = white;
+    rectArray[WhiteRook].y     = white;
+    rectArray[WhiteQueen].y    = white;
+    rectArray[WhiteKing].y     = white;
+    rectArray[BlackPawn].y     = black;
+    rectArray[BlackKnight].y   = black;
+    rectArray[BlackBishop].y   = black;
+    rectArray[BlackRook].y     = black;
+    rectArray[BlackQueen].y    = black;
+    rectArray[BlackKing].y     = black;
 
     for(int i = 0; i < 12; i++)
     {
-        rect_array[i].w         = width;
-        rect_array[i].h         = height;
+        rectArray[i].w         = width;
+        rectArray[i].h         = height;
     }
 }
 

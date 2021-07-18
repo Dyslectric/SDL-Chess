@@ -5,6 +5,8 @@ void render(GameWindow window, GameState state)
 	SDL_RenderClear(window.renderer);
 
 	SDL_Rect destRect;
+
+	//	draw board
 	if(true)
 	{
 		destRect = get_dest_rect(window, DEST_BOARD, NON);

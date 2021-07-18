@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 
     // initializaes the rects used to index the location of the 
     // piece textures in the pieces png
-    init::rects(window.rect_sources);
+    init::rects(window.rectSources);
 
     SDL_Event event;
 

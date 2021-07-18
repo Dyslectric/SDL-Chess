@@ -16,7 +16,7 @@ struct GameWindow
     SDL_Renderer*   renderer;
     SDL_Texture*    textures[TextureCount];
 
-    SDL_Rect rect_sources[12];
+    SDL_Rect rectSources[12];
 };
 
 struct GameState
@@ -24,6 +24,7 @@ struct GameState
     int quit;
     int turn;
     int board[64];
+    int heldPiece;
 };
 
 struct GameInput
