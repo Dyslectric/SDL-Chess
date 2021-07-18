@@ -4,10 +4,14 @@ void render(GameWindow window, GameState state)
 {
 	SDL_RenderClear(window.renderer);
 
-	//	draw board
 	if(true)
 	{
 		draw_board(window, state);
+	}
+
+	if(true)
+	{
+		draw_hints(window, state);
 	}
 
 	if(true)
@@ -24,6 +28,35 @@ void draw_board(GameWindow window, GameState state)
 	SDL_Rect destRect;
 	destRect = get_dest_rect(window, DEST_BOARD, NON);
 	SDL_RenderCopy(window.renderer, window.textures[Board], NULL, &destRect);
+}
+
+void draw_hints(GameWindow window, GameState state)
+{
+	SDL_Rect destRect;
+
+	for(int i = 0; i < 64; i++)
+	{
+		if(state.hintBoard[i] == NON)
+		{
+			continue;
+		}
+
+		else
+		{
+			destRect = get_dest_rect(window, DEST_TILE, i);
+			if(state.hintBoard[i] == TileGreen)
+			{
+				SDL_RenderCopy(	window.renderer, window.textures[TileGreen],
+								NULL, &destRect);
+			}
+
+			if(state.hintBoard[i] == TileRed)
+			{
+				SDL_RenderCopy(	window.renderer, window.textures[TileRed],
+								NULL, &destRect);
+			}
+		}
+	}
 }
 
 void draw_pieces(GameWindow window, GameState state)

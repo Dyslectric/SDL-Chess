@@ -110,11 +110,6 @@ void init::textures(GameWindow &window)
 
 GameState init::state()
 {
-    GameState state;
-
-    state.quit = false;
-    state.turn = Turn_White;
-
     int startBoard[] =
     {
         6,  6,  6,  6,  6,  6,  6,  6,
@@ -127,9 +122,28 @@ GameState init::state()
         0,  0,  0,  0,  0,  0,  0,  0
     };
 
+    int startHintBoard[] =
+    {
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1
+    };
+
+    GameState state;
+
+    state.quit = false;
+    state.turn = Turn_White;
+    state.heldPiece = NON;
+
     for(int i = 0; i < 64; i++)
     {
         state.board[i] = startBoard[i];
+        state.hintBoard[i] = startHintBoard[i];
     }
 
     return state;

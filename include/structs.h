@@ -24,6 +24,7 @@ struct GameState
     int quit;
     int turn;
     int board[64];
+    int hintBoard[64];
     int heldPiece;
 };
 
