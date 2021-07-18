@@ -1,6 +1,6 @@
 #include "logic.h"
 
-void logic(GameInput input, GameState &state)
+void logic(GameInput input)
 {
 	if(input.type == NON)
 	{

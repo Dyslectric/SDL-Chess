@@ -9,19 +9,24 @@
 #include "render.h"
 #include "logic.h"
 #include "input_handler.h"
+#include "globals.h"
+
+GameWindow  window;
+GameState   state;
 
 int main(int argc, char** argv)
 {
-    if(init::modules())
-        return 5;       //  returns 5 if module initialization fails
+    init();
+    // if(init::modules())
+        // return 5;       //  returns 5 if module initialization fails
 
-    GameWindow window = init::window();
-    init::textures(window);
-    GameState state = init::state();
+    // GameWindow window = init::window();
+    // init::textures(window);
+    // GameState state = init::state();
 
-    // initializaes the rects used to index the location of the 
-    // piece textures in the pieces png
-    init::rects(window.rectSources);
+    // // initializaes the rects used to index the location of the 
+    // // piece textures in the pieces png
+    // init::rects(window.rectSources);
 
     SDL_Event event;
 
@@ -35,8 +40,8 @@ int main(int argc, char** argv)
         }
         lastRefresh = tools::uptime();
 
-        logic(input_handler(event), state);
-        render(window, state);
+        logic(input_handler(event));
+        render();
     }
 
     SDL_DestroyWindow(window.window);

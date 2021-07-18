@@ -3,5 +3,6 @@
 
 #include "definitions.h"
 #include "structs.h"
+#include "globals.h"
 
-void logic(GameInput input, GameState &state);
+void logic(GameInput input);

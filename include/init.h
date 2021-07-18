@@ -7,13 +7,12 @@
 
 #include "structs.h"
 
-namespace init
-{
-    int         modules();
-    GameWindow  window();
-    void        rects(SDL_Rect* rect_array);
-    void        textures(GameWindow &window);
-    GameState   state();
-}
+int init();
+
+int     init_modules();
+int     init_window();
+int     init_textures();
+int     init_rects();
+void    init_state();
 
 #endif

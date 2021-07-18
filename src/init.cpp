@@ -1,6 +1,37 @@
 #include "init.h"
+#include "globals.h"
 
-int init::modules()
+int init()
+{
+    if (init_modules())
+    {
+        std::cout << "Module initialization failed." << std::endl;
+        return 1;
+    }
+
+    if (init_window())
+    {
+        std::cout << "Window initialization failed." << std::endl;
+        return 1;
+    }
+
+    if (init_textures())
+    {
+        std::cout << "Texture loading failed." << std::endl;
+        return 1;
+    }
+
+    if (init_rects())
+    {
+        std::cout << "SDL_Rect creation failed." << std::endl;
+        return 1;
+    }
+
+    init_state();
+    return 0;
+}
+
+int init_modules()
 {
     if (SDL_Init(SDL_INIT_VIDEO))
     {
@@ -19,10 +50,8 @@ int init::modules()
     return 0;
 }
 
-GameWindow init::window()
+int init_window()
 {
-    GameWindow window;
-
     window.xpos = SDL_WINDOWPOS_UNDEFINED;
     window.ypos = SDL_WINDOWPOS_UNDEFINED;
 
@@ -48,11 +77,21 @@ GameWindow init::window()
 
     SDL_SetWindowResizable(window.window, SDL_TRUE);
 
-    return window;
+    return 0;
+}
+
+int init_textures()
+{
+    window.textures[Board]          = IMG_LoadTexture(window.renderer, "assets/board.png");
+    window.textures[Pieces]         = IMG_LoadTexture(window.renderer, "assets/pieces.png");
+    window.textures[TileGreen]      = IMG_LoadTexture(window.renderer, "assets/tile_green.png");
+    window.textures[TileRed]        = IMG_LoadTexture(window.renderer, "assets/tile_red.png");
+
+    return 0;
 }
 
 // this function divides the pieces png into 12 sdl rects for rendering
-void init::rects(SDL_Rect* rectArray)
+int init_rects()
 {
     int pawn    = 2560 / 6 * 5;
     int knight  = 2560 / 6 * 3;
@@ -67,48 +106,42 @@ void init::rects(SDL_Rect* rectArray)
     int width   = 2560 / 6;
     int height  = 854 / 2;
 
-    rectArray[WhitePawn].x     = pawn;
-    rectArray[BlackPawn].x     = pawn;
-    rectArray[WhiteKnight].x   = knight;
-    rectArray[BlackKnight].x   = knight;
-    rectArray[WhiteBishop].x   = bishop;
-    rectArray[BlackBishop].x   = bishop;
-    rectArray[WhiteRook].x     = rook;
-    rectArray[BlackRook].x     = rook;
-    rectArray[WhiteQueen].x    = queen;
-    rectArray[BlackQueen].x    = queen;
-    rectArray[WhiteKing].x     = king;
-    rectArray[BlackKing].x     = king;
+    window.rectSources[WhitePawn].x     = pawn;
+    window.rectSources[BlackPawn].x     = pawn;
+    window.rectSources[WhiteKnight].x   = knight;
+    window.rectSources[BlackKnight].x   = knight;
+    window.rectSources[WhiteBishop].x   = bishop;
+    window.rectSources[BlackBishop].x   = bishop;
+    window.rectSources[WhiteRook].x     = rook;
+    window.rectSources[BlackRook].x     = rook;
+    window.rectSources[WhiteQueen].x    = queen;
+    window.rectSources[BlackQueen].x    = queen;
+    window.rectSources[WhiteKing].x     = king;
+    window.rectSources[BlackKing].x     = king;
 
-    rectArray[WhitePawn].y     = white;
-    rectArray[WhiteKnight].y   = white;
-    rectArray[WhiteBishop].y   = white;
-    rectArray[WhiteRook].y     = white;
-    rectArray[WhiteQueen].y    = white;
-    rectArray[WhiteKing].y     = white;
-    rectArray[BlackPawn].y     = black;
-    rectArray[BlackKnight].y   = black;
-    rectArray[BlackBishop].y   = black;
-    rectArray[BlackRook].y     = black;
-    rectArray[BlackQueen].y    = black;
-    rectArray[BlackKing].y     = black;
+    window.rectSources[WhitePawn].y     = white;
+    window.rectSources[WhiteKnight].y   = white;
+    window.rectSources[WhiteBishop].y   = white;
+    window.rectSources[WhiteRook].y     = white;
+    window.rectSources[WhiteQueen].y    = white;
+    window.rectSources[WhiteKing].y     = white;
+    window.rectSources[BlackPawn].y     = black;
+    window.rectSources[BlackKnight].y   = black;
+    window.rectSources[BlackBishop].y   = black;
+    window.rectSources[BlackRook].y     = black;
+    window.rectSources[BlackQueen].y    = black;
+    window.rectSources[BlackKing].y     = black;
 
     for(int i = 0; i < 12; i++)
     {
-        rectArray[i].w         = width;
-        rectArray[i].h         = height;
+        window.rectSources[i].w         = width;
+        window.rectSources[i].h         = height;
     }
+
+    return 0;
 }
 
-void init::textures(GameWindow &window)
-{
-    window.textures[Board]          = IMG_LoadTexture(window.renderer, "assets/board.png");
-    window.textures[Pieces]         = IMG_LoadTexture(window.renderer, "assets/pieces.png");
-    window.textures[TileGreen]      = IMG_LoadTexture(window.renderer, "assets/tile_green.png");
-    window.textures[TileRed]        = IMG_LoadTexture(window.renderer, "assets/tile_red.png");
-}
-
-GameState init::state()
+void init_state()
 {
     int startBoard[] =
     {
@@ -134,8 +167,6 @@ GameState init::state()
         -1, -1, -1, -1, -1, -1, -1, -1
     };
 
-    GameState state;
-
     state.quit = false;
     state.turn = Turn_White;
     state.heldPiece = NON;
@@ -145,6 +176,4 @@ GameState init::state()
         state.board[i] = startBoard[i];
         state.hintBoard[i] = startHintBoard[i];
     }
-
-    return state;
 }

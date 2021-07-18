@@ -1,36 +1,37 @@
 #include "render.h"
+#include "globals.h"
 
-void render(GameWindow window, GameState state)
+void render()
 {
 	SDL_RenderClear(window.renderer);
 
 	if(true)
 	{
-		draw_board(window, state);
+		draw_board();
 	}
 
 	if(true)
 	{
-		draw_hints(window, state);
+		draw_hints();
 	}
 
 	if(true)
 	{
-		draw_pieces(window, state);
+		draw_pieces();
 	}
 
 	SDL_RenderPresent(window.renderer);
 }
 
 //	draws the chess board
-void draw_board(GameWindow window, GameState state)
+void draw_board()
 {
 	SDL_Rect destRect;
-	destRect = get_dest_rect(window, DEST_BOARD, NON);
+	destRect = get_dest_rect(DEST_BOARD, NON);
 	SDL_RenderCopy(window.renderer, window.textures[Board], NULL, &destRect);
 }
 
-void draw_hints(GameWindow window, GameState state)
+void draw_hints()
 {
 	SDL_Rect destRect;
 
@@ -43,7 +44,7 @@ void draw_hints(GameWindow window, GameState state)
 
 		else
 		{
-			destRect = get_dest_rect(window, DEST_TILE, i);
+			destRect = get_dest_rect(DEST_TILE, i);
 			if(state.hintBoard[i] == TileGreen)
 			{
 				SDL_RenderCopy(	window.renderer, window.textures[TileGreen],
@@ -59,7 +60,7 @@ void draw_hints(GameWindow window, GameState state)
 	}
 }
 
-void draw_pieces(GameWindow window, GameState state)
+void draw_pieces()
 {
 	SDL_Rect destRect;
 
@@ -72,7 +73,7 @@ void draw_pieces(GameWindow window, GameState state)
 
 		else
 		{
-			destRect = get_dest_rect(window, DEST_TILE, i);
+			destRect = get_dest_rect(DEST_TILE, i);
 			SDL_RenderCopy(	window.renderer, window.textures[Pieces],
 							&window.rectSources[state.board[i]], &destRect);
 		}
@@ -80,7 +81,7 @@ void draw_pieces(GameWindow window, GameState state)
 }
 
 // calculates width/height of window and returns SDL_Rect of where to put a texture
-SDL_Rect get_dest_rect(const GameWindow window, const int flag, const int tile)
+SDL_Rect get_dest_rect(const int flag, const int tile)
 {
 	SDL_Rect rect;
 
