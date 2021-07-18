@@ -26,8 +26,8 @@ GameWindow init::window()
     window.xpos = SDL_WINDOWPOS_UNDEFINED;
     window.ypos = SDL_WINDOWPOS_UNDEFINED;
 
-    window.width = 1600;
-    window.height = 900;
+    window.width = 800;
+    window.height = 800;
 
     window.window = SDL_CreateWindow(   Name,
                                         window.xpos, window.ypos,
@@ -117,14 +117,14 @@ GameState init::state()
 
     int startBoard[] =
     {
-        3,  1,  2,  4,  5,  2,  1,  3,
-        0,  0,  0,  0,  0,  0,  0,  0,
-        -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1,
-        -1, -1, -1, -1, -1, -1, -1, -1,
         6,  6,  6,  6,  6,  6,  6,  6,
-        9,  7,  8,  10, 11, 8,  7,  9
+        9,  7,  8,  10, 11, 8,  7,  9,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1, -1, -1, -1,
+        3,  1,  2,  4,  5,  2,  1,  3,
+        0,  0,  0,  0,  0,  0,  0,  0
     };
 
     for(int i = 0; i < 64; i++)

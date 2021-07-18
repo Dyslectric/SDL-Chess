@@ -4,16 +4,46 @@ void render(GameWindow window, GameState state)
 {
 	SDL_RenderClear(window.renderer);
 
-	SDL_Rect destRect;
-
 	//	draw board
 	if(true)
 	{
-		destRect = get_dest_rect(window, DEST_BOARD, NON);
-		SDL_RenderCopy(window.renderer, window.textures[Board], NULL, &destRect);
+		draw_board(window, state);
+	}
+
+	if(true)
+	{
+		draw_pieces(window, state);
 	}
 
 	SDL_RenderPresent(window.renderer);
+}
+
+//	draws the chess board
+void draw_board(GameWindow window, GameState state)
+{
+	SDL_Rect destRect;
+	destRect = get_dest_rect(window, DEST_BOARD, NON);
+	SDL_RenderCopy(window.renderer, window.textures[Board], NULL, &destRect);
+}
+
+void draw_pieces(GameWindow window, GameState state)
+{
+	SDL_Rect destRect;
+
+	for(int i = 0; i < 64; i++)
+	{
+		if(state.board[i] == NON)
+		{
+			continue;
+		}
+
+		else
+		{
+			destRect = get_dest_rect(window, DEST_TILE, i);
+			SDL_RenderCopy(	window.renderer, window.textures[Pieces],
+							&window.rectSources[state.board[i]], &destRect);
+		}
+	}
 }
 
 // calculates width/height of window and returns SDL_Rect of where to put a texture
@@ -52,6 +82,33 @@ SDL_Rect get_dest_rect(const GameWindow window, const int flag, const int tile)
 			rect.y = (height - width) / 2;
 			rect.w = width;
 			rect.h = width;
+			return rect;
+		}
+	}
+
+	if(flag == DEST_TILE)
+	{
+		rect.x = width / 8 * (tile % 8);
+		rect.y = height / 8 * (tile / 8);
+		rect.w = width / 8;
+		rect.h = height / 8;
+
+		if(width == height)
+		{
+			return rect;
+		}
+
+		if(width > height)
+		{
+			rect.x = height / 8 * (tile % 8) + (width - height) / 2;
+			rect.w = rect.h;
+			return rect;
+		}
+
+		if(width < height)
+		{
+			rect.y = width / 8 * (tile / 8) + (height - width) / 2;
+			rect.h = rect.w;
 			return rect;
 		}
 	}
