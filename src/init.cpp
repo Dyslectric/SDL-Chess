@@ -174,6 +174,6 @@ void init_state()
     for(int i = 0; i < 64; i++)
     {
         state.board[i] = startBoard[i];
-        state.hintBoard[i] = startHintBoard[i];
+        state.legalsBoard[i] = startHintBoard[i];
     }
 }

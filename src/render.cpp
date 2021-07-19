@@ -12,7 +12,7 @@ void render()
 
 	if(true)
 	{
-		draw_hints();
+		draw_legals_and_checks();
 	}
 
 	if(true)
@@ -36,13 +36,13 @@ void draw_board()
 	SDL_RenderCopy(window.renderer, window.textures[Board], NULL, &destRect);
 }
 
-void draw_hints()
+void draw_legals_and_checks()
 {
 	SDL_Rect destRect;
 
 	for(int i = 0; i < 64; i++)
 	{
-		if(state.hintBoard[i] == NON)
+		if(state.legalsBoard[i] == NON)
 		{
 			continue;
 		}
@@ -50,13 +50,13 @@ void draw_hints()
 		else
 		{
 			destRect = get_dest_rect(DEST_TILE, i);
-			if(state.hintBoard[i] == TileGreen)
+			if(state.legalsBoard[i] == TileGreen)
 			{
 				SDL_RenderCopy(	window.renderer, window.textures[TileGreen],
 								NULL, &destRect);
 			}
 
-			if(state.hintBoard[i] == TileRed)
+			if(state.legalsBoard[i] == TileRed)
 			{
 				SDL_RenderCopy(	window.renderer, window.textures[TileRed],
 								NULL, &destRect);

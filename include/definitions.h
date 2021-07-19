@@ -19,6 +19,9 @@ enum texture_indicies
     Board, Pieces, TileGreen, TileRed
 };
 
+//  TileGreen and TileRed also used as indicies for legalsboard as well as:
+#define TilePrevious 1
+
 //  caching every texture for this game at once
 //  it's kind of pointless not to for chess
 #define TextureCount 4
